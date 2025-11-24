@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "login_layout.html" %}
 
 {% block body %}
     <table>
@@ -7,8 +7,8 @@
                 <form action="/addword" method="post">
                     <input autocomplete="off" autofocus name="english" placeholder="English Word" type="text">
                     <input autocomplete="off" autofocus name="spanish" placeholder="Spanish Word" type="text">
-                    <button type="submit">Add Word</button>
-                    <button type="reset">Clear</button>
+                    <button type="submit" class="btn btn-outline-success">Add Word</button>
+                    <button type="reset" class="btn btn-outline-secondary">Clear</button>
                 </form>
             </td>
             <td>

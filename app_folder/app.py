@@ -1,13 +1,31 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
+from flask_session import Session
 from cs50 import SQL
 
 db = SQL("sqlite:///spanish_dict.db")
 
 app = Flask(__name__)
 
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+
+user_details = {
+    "username": "u",
+    "password": "p"
+}
+
+site_locked = False
+
 @app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index_login.html")
+    return render_template("index.html")
+
+@app.route("/loggedin", methods=["GET", "POST"])
+def index_login():
+    if session["user details"] == user_details and not site_locked:
+        return render_template("index_login.html")
+    return redirect("/")
 
 @app.route("/add", methods=["POST"])
 def add():
@@ -33,3 +51,20 @@ def remove():
     db.execute("DELETE FROM words WHERE id = ?", id)
 
     return redirect("/loggedin/see")
+
+@app.route("/see", methods=["POST", "GET"])
+def see():
+    words = db.execute("SELECT * FROM words")
+    return render_template("see.html", words=words)
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        session["user details"] = {"username": request.form.get("username"), "password": request.form.get("password")}
+        return redirect("/loggedin")
+    return render_template("login.html")
+
+@app.route("/logout", methods=["GET", "POST"])
+def logout():
+    session["user details"] = None
+    return redirect("/")

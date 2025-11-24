@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "login_layout.html" %}
 
 {% block body %}
     <h1>Spanish Dictionary</h1>
@@ -6,12 +6,12 @@
         <tr>
             <td>
                 <form action="/add" method="post">
-                    <button type="submit">Add New Word</button>
+                    <button type="submit" clas="btn btn-outline-success">Add</button>
                 </form>
             </td>
             <td>
                 <form action="/loggedin/see" method="post">
-                    <button type="submit">See Dictionary</button>
+                    <button type="submit" class="btn btn-outline-info">See Dictionary</button>
                 </form>
             </td>
         </tr>
