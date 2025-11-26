@@ -1,24 +1,32 @@
 {% extends "login_layout.html" %}
 
 {% block body %}
-    <table>
-        <tr>
-            <td>
-                <form action="/addword" method="post">
-                    <input autocomplete="off" autofocus name="english" placeholder="English Word" type="text">
-                    <input autocomplete="off" autofocus name="spanish" placeholder="Spanish Word" type="text">
-                    <button type="submit" class="btn btn-outline-success">Add Word</button>
-                    <button type="reset" class="btn btn-outline-secondary">Clear</button>
-                </form>
-            </td>
-            <td>
-                <form action="/" method="post">
-                    <button type="submit">
-                        <i class="fa-solid fa-circle-xmark"></i>
-                    </button>
-                </form>
-            </td>
-        </tr>
-    </table>
+
+    <form action="/addword" method="post">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">English</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="english" autofocus autocomplete="off">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Spanish</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" name="spanish" autocomplete="off">
+        </div>
+        <div>
+            <button type="submit" class="btn btn-outline-success">Add Word</button>
+        </div>
+        <div>
+            <button type="reset" class="btn btn-outline-secondary">Clear</button>
+        </div>
+    </form>
+
+{% endblock %}
+
+{% block other %}
+
+    <form action="/loggedin" method="post">
+        <button type="submit" class="btn btn-outline-secondary">
+            <i class="fa-solid fa-left-long"></i>
+        </button>
+    </form>
 
 {% endblock %}

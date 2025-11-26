@@ -2,9 +2,13 @@
 
 {% block content %}
 
-    <form action="/login" method="get">
-        <button type="submit" class="btn btn-outline-danger">Login</button>
-    </form>
+    <div class="d-flex justify-content-between my-3">
+        {% block other %}{% endblock %}
+        <form action="/login" method="get">
+            <button type="submit" class="btn btn-outline-danger">Login</button>
+        </form>
+    </div>
+
     {% block body %}{% endblock %}
 
 {% endblock %}

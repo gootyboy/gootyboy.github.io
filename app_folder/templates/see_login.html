@@ -1,23 +1,6 @@
 {% extends "login_layout.html" %}
 
-{% block content %}
-
-    <table>
-        <tr>
-            <td>
-                <form action="/loggedin" method="post">
-                    <button type="submit" class="btn btn-outline-secondary">
-                        <i class="fa-solid fa-left-long"></i>
-                    </button>
-                </form>
-            </td>
-            <td>
-                <form action="/logout" method="get">
-                    <button type="submit" class="btn btn-outline-danger">Logout</button>
-                </form>
-            </td>
-        </tr>
-    </table>
+{% block body %}
 
     <table class="table table-striped">
         <thead>
@@ -47,4 +30,14 @@
         </tbody>
     </table>
     
+{% endblock %}
+
+{% block other %}
+
+    <form action="/loggedin" method="post">
+        <button type="submit" class="btn btn-outline-secondary">
+            <i class="fa-solid fa-left-long"></i>
+        </button>
+    </form>
+
 {% endblock %}

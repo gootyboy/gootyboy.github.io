@@ -11,8 +11,8 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 user_details = {
-    "username": "u",
-    "password": "p"
+    "username": "g@icloud.com",
+    "password": "password"
 }
 
 site_locked = False
@@ -25,7 +25,11 @@ def index():
 def index_login():
     if session["user details"] == user_details and not site_locked:
         return render_template("index_login.html")
-    return redirect("/")
+    return redirect("/login/incorrect")
+
+@app.route("/login/incorrect", methods=["GET", "POST"])
+def incorrect():
+    return render_template("login_fail.html")
 
 @app.route("/add", methods=["POST"])
 def add():
