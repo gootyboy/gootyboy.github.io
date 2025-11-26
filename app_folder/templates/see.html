@@ -22,8 +22,26 @@
         <tbody class="table-group-divider">
             {% for word_dict in words %}
                 <tr>
-                    <td>{{word_dict.spanish}}</td>
-                    <td>{{word_dict.english}}</td>
+                    {% if word_dict.type == "text" %}
+                        <td>{{ word_dict.spanish }}</td>
+                        <td>{{ word_dict.english }}</td>
+                    {% endif %}
+                    {% if word_dict.type == "title" %}
+                        <th style="font-size: 75px;">{{ word_dict.spanish }}</th>
+                        <th style="font-size: 75px;">{{ word_dict.english }}</th>
+                    {% endif %}
+                    {% if word_dict.type == "subtitle 1" %}
+                        <th style="font-size: 50px;">{{ word_dict.spanish }}</th>
+                        <th style="font-size: 50px;">{{ word_dict.english }}</th>
+                    {% endif %}
+                    {% if word_dict.type == "subtitle 2" %}
+                        <th style="font-size: 35px;">{{ word_dict.spanish }}</th>
+                        <th style="font-size: 35px;">{{ word_dict.english }}</th>
+                    {% endif %}
+                    {% if word_dict.type == "subtitle 3" %}
+                        <th style="font-size: 20px;">{{ word_dict.spanish }}</th>
+                        <th style="font-size: 20px;">{{ word_dict.english }}</th>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>

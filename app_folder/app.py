@@ -11,8 +11,8 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 user_details = {
-    "username": "GPulugurta",
-    "password": "Gooty_1$"
+    "username": "q",
+    "password": "w"
 }
 
 site_locked = False
@@ -31,7 +31,7 @@ def index_login():
 def incorrect():
     return render_template("login_fail.html")
 
-@app.route("/add", methods=["POST"])
+@app.route("/loggedin/add", methods=["POST"])
 def add():
     return render_template("add.html")
 
@@ -39,8 +39,10 @@ def add():
 def add_word():
     en_word = request.form.get("english")
     sp_word = request.form.get("spanish")
+    row_type = request.form.get("type")
+    print(row_type)
     if en_word != None and sp_word != None:
-        db.execute("INSERT INTO words (spanish, english) VALUES(?, ?)", sp_word, en_word)
+        db.execute("INSERT INTO words (type, spanish, english) VALUES(?, ?, ?)", row_type, sp_word, en_word)
     
     return redirect("/loggedin/see")
 
