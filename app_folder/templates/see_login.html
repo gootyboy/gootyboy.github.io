@@ -1,61 +1,20 @@
-{% extends "login_layout.html" %}
+{% extends "see_layout.html" %}
 
-{% block body %}
+{% set login = true %}
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Spanish</th>
-                <th scope="col">English</th>
-                <th scope="col">Options</th>
-            </tr>
-        </thead>
-        <tbody class="table-group-divider">
-            {% for word_dict in words %}
-                <tr>
-                    {% if word_dict.type == "text" %}
-                        <td>{{ word_dict.spanish }}</td>
-                        <td>{{ word_dict.english }}</td>
-                    {% endif %}
-                    {% if word_dict.type == "title" %}
-                        <th style="font-size: 75px;">{{ word_dict.spanish }}</th>
-                        <th style="font-size: 75px;">{{ word_dict.english }}</th>
-                    {% endif %}
-                    {% if word_dict.type == "subtitle 1" %}
-                        <th style="font-size: 50px;">{{ word_dict.spanish }}</th>
-                        <th style="font-size: 50px;">{{ word_dict.english }}</th>
-                    {% endif %}
-                    {% if word_dict.type == "subtitle 2" %}
-                        <th style="font-size: 35px;">{{ word_dict.spanish }}</th>
-                        <th style="font-size: 35px;">{{ word_dict.english }}</th>
-                    {% endif %}
-                    {% if word_dict.type == "subtitle 3" %}
-                        <th style="font-size: 20px;">{{ word_dict.spanish }}</th>
-                        <th style="font-size: 20px;">{{ word_dict.english }}</th>
-                    {% endif %}
-                    <td>
-                        <form action="/remove" method="post">
-                            <input name="spanish" type="hidden" value="{{ word_dict.spanish }}">
-                            <input name="english" type="hidden" value="{{ word_dict.english }}">
-                            <input name="id" type="hidden" value="{{ word_dict.id }}">
-                            <button class="btn btn-outline-danger" type="submit">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    
+{% block other_col %}
+    <th scope="col">Options</th>
 {% endblock %}
 
-{% block other %}
-
-    <form action="/loggedin" method="post">
-        <button type="submit" class="btn btn-outline-secondary">
-            <i class="fa-solid fa-left-long"></i>
-        </button>
-    </form>
-
-{% endblock %}
+{% macro remove_button(word_dict) %}
+    <td>
+        <form action="/remove" method="post">
+            <input name="spanish" type="hidden" value="{{ word_dict.spanish }}">
+            <input name="english" type="hidden" value="{{ word_dict.english }}">
+            <input name="id" type="hidden" value="{{ word_dict.id }}">
+            <button class="btn btn-outline-danger" type="submit">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+        </form>
+    </td>
+{% endmacro %}

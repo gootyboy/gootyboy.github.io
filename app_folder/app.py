@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
 from cs50 import SQL
+import time
+import pyttsx3
 
 db = SQL("sqlite:///spanish_dict.db")
 
@@ -15,15 +17,13 @@ user_details = {
     "password": "w"
 }
 
-site_locked = False
-
 @app.route("/", methods=["GET", "POST"])
 def index():
     return render_template("index.html")
 
 @app.route("/loggedin", methods=["GET", "POST"])
 def index_login():
-    if session["user details"] == user_details and not site_locked:
+    if session["user details"] == user_details:
         return render_template("index_login.html")
     return redirect("/login")
 
